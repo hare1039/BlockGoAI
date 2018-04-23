@@ -511,7 +511,7 @@ void player(int player, int choice)
         //----------------------------------Player2---------------------------------------//
 
         else if (choice == 1) {
-
+            srand(time(NULL));
             while (AI_Error == true) {
                 overlapped = false;
                 Out_Range = false;
