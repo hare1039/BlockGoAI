@@ -1,9 +1,13 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+
+#include <string>
 #include "General.h"
 
 using namespace std;
+
+int aaaa;
 
 allblock blocklife1[30];
 allblock blocklife2[30];
@@ -14,15 +18,15 @@ bool block[4][4];
 int x_of_block;
 int y_of_block;
 
-bool block1[4][4] = { true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
-bool block2[4][4] = { true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
-bool block3[4][4] = { true, false, false, false, true, true, false, false, true, false, false, false, false, false, false, false };
-bool block4[4][4] = { true, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false };
-bool block5[4][4] = { false, true, true, false, true, true, false, false, false, false, false, false, false, false, false, false };
-bool block6[4][4] = { true, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false };
-bool block7[4][4] = { false, false, true, false, true, true, true, false, false, false, false, false, false, false, false, false };
-bool block8[4][4] = { true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false };
-bool block9[4][4] = { true, true, false, false, true, true, false, false, false, false, false, false, false, false, false, false };
+bool block1[4][4] = { {true, false, false, false}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
+bool block2[4][4] = { {true, false, false, false}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
+bool block3[4][4] = { {true, false, false, false}, {true, true, false, false}, {true, false, false, false}, {false, false, false, false} };
+bool block4[4][4] = { {true, true, false, false}, {false, true, true, false}, {false, false, false, false}, {false, false, false, false} };
+bool block5[4][4] = { {false, true, true, false}, {true, true, false, false}, {false, false, false, false}, {false, false, false, false} };
+bool block6[4][4] = { {true, false, false, false}, {true, true, true, false}, {false, false, false, false}, {false, false, false, false} };
+bool block7[4][4] = { {false, false, true, false}, {true, true, true, false}, {false, false, false, false}, {false, false, false, false} };
+bool block8[4][4] = { {true, true, true, true}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
+bool block9[4][4] = { {true, true, false, false}, {true, true, false, false}, {false, false, false, false}, {false, false, false, false} };
 
 bool player1;
 
@@ -33,7 +37,7 @@ int using_block = 0;
 
 int final_map[15][15];
 int unkown_number = 0;
-int search_array[60];
+int search_array[600];
 int search_array_number = 0;
 int number_of_p1 = 0;
 int number_of_p2 = 0;
@@ -58,86 +62,131 @@ int block_count1=0;
 int block_count2=0;
 int block_change1=0;
 
-int main(void)
+FILE * ofp = stdout;
+
+struct allblock S_blocklife1[30];
+struct allblock S_blocklife2[30];
+
+char S_temporary_map[15][15];
+char S_Map[15][15];
+bool S_block[4][4];
+int S_x_of_block;
+int S_y_of_block;
+
+bool S_block1[4][4];
+bool S_block2[4][4];
+bool S_block3[4][4];
+bool S_block4[4][4];
+bool S_block5[4][4];
+bool S_block6[4][4];
+bool S_block7[4][4];
+bool S_block8[4][4];
+bool S_block9[4][4];
+
+bool S_player1;
+
+bool S_p1_used_block[9];
+bool S_p2_used_block[9];
+
+int S_using_block;
+
+int S_final_map[15][15];
+int S_unkown_number;
+int S_search_array[600];
+int S_search_array_number;
+int S_number_of_p1;
+int S_number_of_p2;
+
+int S_final_map1[15][15];
+int S_final_map2[15][15];
+
+int S_block_begin1;
+int S_block_end1;
+
+int S_block_begin2;
+int S_block_end2;
+
+bool S_boundary[48];
+int S_boundary_number;
+
+int S_live_or_dead_map[15][15];
+
+int S_file_Array1[36];
+int S_file_Array2[36];
+int S_block_count1;
+int S_block_count2;
+int S_block_change1;
+
+int S_expansion_block[4];
+
+struct block_node* reg_node;
+
+int main(int argc, char *argv[])
 {
-    //--------initialization----------------
-    reduction_block();
+	if (argc >= 2 && std::string(argv[1]) == "web") {
+	    ofp = fopen ("/dev/null", "w");
+	}
 
-    introduction();
+//-----------------------------Intro_MapDisplay-----------------------------
+	initialize_block();
+	initialize_map();
+	introduction();
+//-----------------------------Intro_MapDisplay-----------------------------
 
-    reduction_map();
-    //--------initialization----------------
+int choice;
+	int Algorithm;
+	for(int k=0;k<9;k++){
+		fprintf(ofp, "\nDo you want to let whom play this bout P1\n");
+		fprintf(ofp, "1. Player\n");
+		fprintf(ofp, "2. AI\n");
+		fprintf(ofp, "Please Select Play Mode：");
+		scanf("%d", &choice);
+		fprintf(ofp, "\n");
 
-    int choice;
+		while (choice < 1 || choice > 2) {
+			fprintf(ofp, "Please select available play mode!\n");
+			fprintf(ofp, "Please Select Player：");
+			scanf("%d", &choice);
+			fprintf(ofp, "\n");
+		}
+		if(choice==1){
+			player(1,0,2,k+1);
+		}
+		else if(choice==2){
+			player(1,2,0,k+1);
+		}
+		
+		fprintf(ofp, "\nDo you want to let whom play this bout P2\n");
+		fprintf(ofp, "1. Player\n");
+		fprintf(ofp, "2. AI\n");
+		fprintf(ofp, "Please Select Player：");
+		scanf("%d", &choice);
+		fprintf(ofp, "\n");
 
-    printf("\n\n");
-    printf("1. Player VS Player\n");
-    printf("2. AI VS AI\n");
-    printf("3. Player V AI\n");
-    printf("4. AI V Player\n");
-    printf("Please Select Play Mode：");
-    scanf("%d",&choice);
-    printf("\n");
+		while (choice < 1 || choice > 2) {
+			fprintf(ofp, "Please select available play mode!\n");
+			fprintf(ofp, "Please Select Play Mode：");
+			scanf("%d", &choice);
+			fprintf(ofp, "\n");
+		}
+		if(choice==1){
+			if (ofp == stdout){
+				system("clear");
+			}
+			player(0,0,2,k+1);
+		}
+		else if(choice==2){
+			if (ofp == stdout){
+				system("clear");
+			}
+			player(0,2,0,k+1);
+		}
+	}
 
-    while(choice < 1 || choice > 4){
-        printf("Please select available play mode!\n");
-        printf("Please Select Play Mode：");
-        scanf("%d",&choice);
-        printf("\n");
-    }
 
-    system("clear");
+//-----------------------------Cal_Result-----------------------------
 
-    switch(choice){
-        case 1:
-            for (int k = 0; k < 9; k++) {
-                x_of_block = 1;
-                y_of_block = 1;
-                player(1,0);
-                x_of_block = 1;
-                y_of_block = 1;
-                player(0,0);
-            }
-            break;
-
-        case 2:
-            for (int k = 0; k < 9; k++) {
-                x_of_block = 1;
-                y_of_block = 1;
-                player(1,1);
-                x_of_block = 1;
-                y_of_block = 1;
-                player(0,1);
-            }
-            break;
-
-        case 3:
-            for (int k = 0; k < 9; k++) {
-                x_of_block = 1;
-                y_of_block = 1;
-                player(1,0);
-                x_of_block = 1;
-                y_of_block = 1;
-                player(0,1);
-            }
-            break;
-
-        case 4:
-            for (int k = 0; k < 9; k++) {
-                x_of_block = 1;
-                y_of_block = 1;
-                player(1,1);
-                x_of_block = 1;
-                y_of_block = 1;
-                player(0,0);
-            }
-            break;
-
-    }
-
-    printf("\n----------------------Finish----------------------\n");
-
-    int p1num = 0;
+int p1num = 0;
     int p2num = 0;
     //new begin
     for (int aaa = 0; aaa < 48; aaa++) {
@@ -216,12 +265,12 @@ int main(void)
             Map[blocklife2[aaa].x][blocklife2[aaa].y] = '+';
         }
     }
-    printf(" ");
+    fprintf(ofp, " ");
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
-            printf(" %c ", Map[i][j]);
+            fprintf(ofp, " %c ", Map[i][j]);
         }
-        printf(" \n ");
+        fprintf(ofp, " \n ");
     }
     //new end
     for (int i = 0; i < 15; i++) {
@@ -237,12 +286,12 @@ int main(void)
             }
         }
     }
-    printf(" ");
+    fprintf(ofp, " ");
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
-            printf(" %d ", final_map[i][j]);
+            fprintf(ofp, " %d ", final_map[i][j]);
         }
-        printf(" \n ");
+        fprintf(ofp, " \n ");
     }
 
     for (int i = 1; i < 14; i++) {
@@ -258,8 +307,8 @@ int main(void)
         }
     }
 
-    printf("territory of p1: %d\n", number_of_p1);
-    printf("territory of p2: %d\n", number_of_p2);
+    fprintf(ofp, "territory of p1: %d\n", number_of_p1);
+    fprintf(ofp, "territory of p2: %d\n", number_of_p2);
     if (number_of_p1 > number_of_p2) {
     	FILE *fp;
 	    fp = fopen("history.txt","a");
@@ -273,7 +322,7 @@ int main(void)
 		}
 		fprintf(fp,"%d\n" ,file_Array2[35]);
 	    fclose(fp);
-        printf("P1 win\n");
+        fprintf(ofp, "P1 win\n");
     } else if (number_of_p1 < number_of_p2) {
     	FILE *fp;
 	    fp = fopen("history.txt","a");
@@ -287,9 +336,9 @@ int main(void)
 		}
 		fprintf(fp,"%d\n" ,file_Array1[35]);
 	    fclose(fp);
-        printf("P2 win\n");
+        fprintf(ofp, "P2 win\n");
     } else {
-        printf("DRAW");
+        fprintf(ofp, "DRAW");
     }
 
     return 0;

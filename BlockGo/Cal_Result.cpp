@@ -20,6 +20,12 @@ void search_block1(int x, int y)
         }
     } else {
     }
+	//up&right
+	if (final_map1[x - 1][y + 1] == 0) {
+        search_block1(x-1, y+1);
+    }else {
+    }
+	
     //right
     if (final_map1[x][y + 1] == 0) {
         search_block1(x, y + 1);
@@ -30,6 +36,13 @@ void search_block1(int x, int y)
         }
     } else {
     }
+	
+	//right&down
+	if (final_map1[x + 1][y + 1] == 0) {
+        search_block1(x+1, y+1);
+    } else {
+    }
+	
     //down
     if (final_map1[x + 1][y] == 0) {
         search_block1(x + 1, y);
@@ -40,6 +53,13 @@ void search_block1(int x, int y)
         }
     } else {
     }
+	
+	//down&left
+	if (final_map1[x + 1][y - 1] == 0) {
+        search_block1(x+1, y-1);
+    } else {
+    }
+	
     //left
     if (final_map1[x][y - 1] == 0) {
         search_block1(x, y - 1);
@@ -48,6 +68,12 @@ void search_block1(int x, int y)
             boundary[36 + 13 - x] = true;
             boundary_number++;
         }
+    } else {
+    }
+	
+	//left&up
+	if (final_map1[x - 1][y - 1] == 0) {
+        search_block1(x-1, y-1);
     } else {
     }
 
@@ -72,6 +98,13 @@ void search_block2(int x, int y)
         }
     } else {
     }
+	
+	//up & right
+	if (final_map2[x - 1][y + 1] == 0) {
+        search_block2(x-1, y+1);
+    } else {
+    }
+	
     //right
     if (final_map2[x][y + 1] == 0) {
         search_block2(x, y + 1);
@@ -82,6 +115,13 @@ void search_block2(int x, int y)
         }
     } else {
     }
+	
+	//right & down
+	if (final_map2[x + 1][y + 1] == 0) {
+        search_block2(x+1, y+1);
+    } else {
+    }
+	
     //down
     if (final_map2[x + 1][y] == 0) {
         search_block2(x + 1, y);
@@ -92,6 +132,13 @@ void search_block2(int x, int y)
         }
     } else {
     }
+	
+	//down & left
+	if (final_map2[x + 1][y - 1] == 0) {
+        search_block2(x+1, y-1);
+    } else {
+    }
+	
     //left
     if (final_map2[x][y - 1] == 0) {
         search_block2(x, y - 1);
@@ -102,7 +149,13 @@ void search_block2(int x, int y)
         }
     } else {
     }
-
+	
+	//left & up
+	if (final_map2[x - 1][y - 1] == 0) {
+        search_block2(x-1, y-1);
+    } else {
+    }
+	
     //end
     return;
 }
