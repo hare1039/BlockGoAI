@@ -1,7 +1,7 @@
+#include "General.h"
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include "General.h"
 
 void S_search_block1(int x, int y)
 {
@@ -20,13 +20,13 @@ void S_search_block1(int x, int y)
         }
     } else {
     }
-	
-	//up & right
+
+    //up & right
     if (S_final_map1[x - 1][y + 1] == 0) {
-        S_search_block1(x-1, y+1);
+        S_search_block1(x - 1, y + 1);
     } else {
     }
-	
+
     //right
     if (S_final_map1[x][y + 1] == 0) {
         S_search_block1(x, y + 1);
@@ -37,13 +37,13 @@ void S_search_block1(int x, int y)
         }
     } else {
     }
-	
-	//right & down
+
+    //right & down
     if (S_final_map1[x + 1][y + 1] == 0) {
-        S_search_block1(x+1, y+1);
+        S_search_block1(x + 1, y + 1);
     } else {
     }
-	
+
     //down
     if (S_final_map1[x + 1][y] == 0) {
         S_search_block1(x + 1, y);
@@ -54,13 +54,13 @@ void S_search_block1(int x, int y)
         }
     } else {
     }
-	
-	//down & left
+
+    //down & left
     if (S_final_map1[x + 1][y - 1] == 0) {
-        S_search_block1(x+1, y-1);
+        S_search_block1(x + 1, y - 1);
     } else {
     }
-	
+
     //left
     if (S_final_map1[x][y - 1] == 0) {
         S_search_block1(x, y - 1);
@@ -71,12 +71,12 @@ void S_search_block1(int x, int y)
         }
     } else {
     }
-	//left & up
-	if (S_final_map1[x - 1][y - 1] == 0) {
-        S_search_block1(x-1, y-1);
+    //left & up
+    if (S_final_map1[x - 1][y - 1] == 0) {
+        S_search_block1(x - 1, y - 1);
     } else {
     }
-	
+
     //end
     return;
 }
@@ -98,13 +98,13 @@ void S_search_block2(int x, int y)
         }
     } else {
     }
-	
-	//up & right
+
+    //up & right
     if (S_final_map2[x - 1][y + 1] == 0) {
-        S_search_block2(x-1, y+1);
+        S_search_block2(x - 1, y + 1);
     } else {
     }
-	
+
     //right
     if (S_final_map2[x][y + 1] == 0) {
         S_search_block2(x, y + 1);
@@ -115,13 +115,13 @@ void S_search_block2(int x, int y)
         }
     } else {
     }
-	
-	//right & down
+
+    //right & down
     if (S_final_map2[x + 1][y + 1] == 0) {
-        S_search_block2(x+1, y+1);
+        S_search_block2(x + 1, y + 1);
     } else {
     }
-	
+
     //down
     if (S_final_map2[x + 1][y] == 0) {
         S_search_block2(x + 1, y);
@@ -132,13 +132,13 @@ void S_search_block2(int x, int y)
         }
     } else {
     }
-	
-	//down & left
+
+    //down & left
     if (S_final_map2[x + 1][y - 1] == 0) {
-        S_search_block2(x+1, y-1);
+        S_search_block2(x + 1, y - 1);
     } else {
     }
-	
+
     //left
     if (S_final_map2[x][y - 1] == 0) {
         S_search_block2(x, y - 1);
@@ -150,12 +150,12 @@ void S_search_block2(int x, int y)
     } else {
     }
 
-	//left & up
+    //left & up
     if (S_final_map2[x - 1][y - 1] == 0) {
-        S_search_block2(x-1, y-1);
+        S_search_block2(x - 1, y - 1);
     } else {
     }
-	
+
     //end
     return;
 }

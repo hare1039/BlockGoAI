@@ -1,3 +1,4 @@
+#include <cstdio>
 struct allblock {
     int x;
     int y;

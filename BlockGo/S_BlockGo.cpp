@@ -2,97 +2,92 @@
 #include <cstdlib>
 #include <ctime>
 
-#include <string>
 #include "General.h"
+#include <string>
 
 int S_Simulate(int whichplayer, int whichbout)
 {
-//-----------------------------Rule-----------------------------
-	int player_return=0;
-	if(whichplayer==1 && whichbout < 10){
-		//printf("Simulate_player1\n");
-		S_x_of_block = 1;
-		S_y_of_block = 1;
-		player_return=S_player(1,1);
-		if(player_return==55){
-			//printf("	sim error\n");
-			//scanf("%d", &aaaa);
-			return 3;
-		}
-		
-		S_x_of_block = 1;
-		S_y_of_block = 1;
-		player_return=S_player(2,0);
-		if(player_return==55){
-			//printf("	sim error\n");
-			//scanf("%d", &aaaa);
-			return 3;
-		}
-		
-        for (int k = whichbout+1; k < 10; k++) {
-			
-			S_x_of_block = 1;
-			S_y_of_block = 1;
-			player_return=S_player(1,0);
-			if(player_return==55){
-				//printf("	sim error\n");
-				//scanf("%d", &aaaa);
-				return 3;
-			}
-			
-			S_x_of_block = 1;
-			S_y_of_block = 1;
-			player_return=S_player(2,0);
-			if(player_return==55){
-				//printf("	sim error\n");
-				//scanf("%d", &aaaa);
-				return 3;
-			}
-			
-		}
-		
-	}
-	else if(whichplayer==2 && whichbout < 10){
-		//printf("Simulate_player2\n");
-		S_x_of_block = 1;
-		S_y_of_block = 1;
-		player_return=S_player(2,1);
-		if(player_return==55){
-			//printf("	sim error\n");
-			//scanf("%d", &aaaa);
-			return 3;
-		}
-		
-        for (int k = whichbout+1; k < 10; k++) {
-			
-			S_x_of_block = 1;
-			S_y_of_block = 1;
-			player_return=S_player(1,0);
-			if(player_return==55){
-				//printf("	sim error\n");
-				//scanf("%d", &aaaa);
-				return 3;
-			}
-			
-			S_x_of_block = 1;
-			S_y_of_block = 1;
-			player_return=S_player(2,0);
-			if(player_return==55){
-				//printf("	sim error\n");
-				//scanf("%d", &aaaa);
-				return 3;
-			}
-			
-		}
-		
-	}
+    //-----------------------------Rule-----------------------------
+    int player_return = 0;
+    if (whichplayer == 1 && whichbout < 10) {
+        //printf("Simulate_player1\n");
+        S_x_of_block = 1;
+        S_y_of_block = 1;
+        player_return = S_player(1, 1);
+        if (player_return == 55) {
+            //printf("	sim error\n");
+            //scanf("%d", &aaaa);
+            return 3;
+        }
 
-//-----------------------------Rule-----------------------------
+        S_x_of_block = 1;
+        S_y_of_block = 1;
+        player_return = S_player(2, 0);
+        if (player_return == 55) {
+            //printf("	sim error\n");
+            //scanf("%d", &aaaa);
+            return 3;
+        }
 
+        for (int k = whichbout + 1; k < 10; k++) {
 
-//-----------------------------Cal_Result-----------------------------
+            S_x_of_block = 1;
+            S_y_of_block = 1;
+            player_return = S_player(1, 0);
+            if (player_return == 55) {
+                //printf("	sim error\n");
+                //scanf("%d", &aaaa);
+                return 3;
+            }
 
-	int p1num = 0;
+            S_x_of_block = 1;
+            S_y_of_block = 1;
+            player_return = S_player(2, 0);
+            if (player_return == 55) {
+                //printf("	sim error\n");
+                //scanf("%d", &aaaa);
+                return 3;
+            }
+        }
+
+    } else if (whichplayer == 2 && whichbout < 10) {
+        //printf("Simulate_player2\n");
+        S_x_of_block = 1;
+        S_y_of_block = 1;
+        player_return = S_player(2, 1);
+        if (player_return == 55) {
+            //printf("	sim error\n");
+            //scanf("%d", &aaaa);
+            return 3;
+        }
+
+        for (int k = whichbout + 1; k < 10; k++) {
+
+            S_x_of_block = 1;
+            S_y_of_block = 1;
+            player_return = S_player(1, 0);
+            if (player_return == 55) {
+                //printf("	sim error\n");
+                //scanf("%d", &aaaa);
+                return 3;
+            }
+
+            S_x_of_block = 1;
+            S_y_of_block = 1;
+            player_return = S_player(2, 0);
+            if (player_return == 55) {
+                //printf("	sim error\n");
+                //scanf("%d", &aaaa);
+                return 3;
+            }
+        }
+    }
+
+    //-----------------------------Rule-----------------------------
+
+    //-----------------------------Cal_Result-----------------------------
+
+    int p1num = 0;
     int p2num = 0;
     //new begin
     for (int aaa = 0; aaa < 48; aaa++) {
@@ -200,16 +195,16 @@ int S_Simulate(int whichplayer, int whichbout)
     }
 
     if (S_number_of_p1 > S_number_of_p2) {
-		//printf("Simulate_end_win1\n");
-		//scanf("%d", &aaaa);
-    	return 1;
+        //printf("Simulate_end_win1\n");
+        //scanf("%d", &aaaa);
+        return 1;
     } else if (S_number_of_p1 < S_number_of_p2) {
-		//printf("Simulate_end_win2\n");
-		//scanf("%d", &aaaa);
-    	return 2;
+        //printf("Simulate_end_win2\n");
+        //scanf("%d", &aaaa);
+        return 2;
     } else {
-		//printf("Simulate_end_no_win\n");
-		//scanf("%d", &aaaa);
+        //printf("Simulate_end_no_win\n");
+        //scanf("%d", &aaaa);
         return 0;
     }
 }

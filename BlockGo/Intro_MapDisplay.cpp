@@ -1,8 +1,7 @@
+#include "General.h"
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include "General.h"
-
 
 void introduction()
 {

@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 
-#include <string>
 #include "General.h"
+#include <string>
 
 using namespace std;
 
@@ -18,15 +18,15 @@ bool block[4][4];
 int x_of_block;
 int y_of_block;
 
-bool block1[4][4] = { {true, false, false, false}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
-bool block2[4][4] = { {true, false, false, false}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
-bool block3[4][4] = { {true, false, false, false}, {true, true, false, false}, {true, false, false, false}, {false, false, false, false} };
-bool block4[4][4] = { {true, true, false, false}, {false, true, true, false}, {false, false, false, false}, {false, false, false, false} };
-bool block5[4][4] = { {false, true, true, false}, {true, true, false, false}, {false, false, false, false}, {false, false, false, false} };
-bool block6[4][4] = { {true, false, false, false}, {true, true, true, false}, {false, false, false, false}, {false, false, false, false} };
-bool block7[4][4] = { {false, false, true, false}, {true, true, true, false}, {false, false, false, false}, {false, false, false, false} };
-bool block8[4][4] = { {true, true, true, true}, {false, false, false, false}, {false, false, false, false}, {false, false, false, false} };
-bool block9[4][4] = { {true, true, false, false}, {true, true, false, false}, {false, false, false, false}, {false, false, false, false} };
+bool block1[4][4] = { { true, false, false, false }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
+bool block2[4][4] = { { true, false, false, false }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
+bool block3[4][4] = { { true, false, false, false }, { true, true, false, false }, { true, false, false, false }, { false, false, false, false } };
+bool block4[4][4] = { { true, true, false, false }, { false, true, true, false }, { false, false, false, false }, { false, false, false, false } };
+bool block5[4][4] = { { false, true, true, false }, { true, true, false, false }, { false, false, false, false }, { false, false, false, false } };
+bool block6[4][4] = { { true, false, false, false }, { true, true, true, false }, { false, false, false, false }, { false, false, false, false } };
+bool block7[4][4] = { { false, false, true, false }, { true, true, true, false }, { false, false, false, false }, { false, false, false, false } };
+bool block8[4][4] = { { true, true, true, true }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
+bool block9[4][4] = { { true, true, false, false }, { true, true, false, false }, { false, false, false, false }, { false, false, false, false } };
 
 bool player1;
 
@@ -58,11 +58,11 @@ int live_or_dead_map[15][15];
 
 int file_Array1[36];
 int file_Array2[36];
-int block_count1=0;
-int block_count2=0;
-int block_change1=0;
+int block_count1 = 0;
+int block_count2 = 0;
+int block_change1 = 0;
 
-FILE * ofp = stdout;
+FILE* ofp = stdout;
 
 struct allblock S_blocklife1[30];
 struct allblock S_blocklife2[30];
@@ -121,75 +121,72 @@ int S_expansion_block[4];
 
 struct block_node* reg_node;
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-	if (argc >= 2 && std::string(argv[1]) == "web") {
-	    ofp = fopen ("/dev/null", "w");
-	}
+    if (argc >= 2 && std::string(argv[1]) == "web") {
+        ofp = fopen("/dev/null", "w");
+    }
 
- 	block_node n;
-	reg_node = &n;
+    block_node n;
+    reg_node = &n;
 
-//-----------------------------Intro_MapDisplay-----------------------------
-	initialize_block();
-	initialize_map();
-	introduction();
-//-----------------------------Intro_MapDisplay-----------------------------
+    //-----------------------------Intro_MapDisplay-----------------------------
+    initialize_block();
+    initialize_map();
+    introduction();
+    //-----------------------------Intro_MapDisplay-----------------------------
 
-int choice;
-	int Algorithm;
-	for(int k=0;k<9;k++){
-		fprintf(ofp, "\nDo you want to let whom play this bout P1\n");
-		fprintf(ofp, "1. Player\n");
-		fprintf(ofp, "2. AI\n");
-		fprintf(ofp, "Please Select Play Mode：");
-		scanf("%d", &choice);
-		fprintf(ofp, "\n");
+    int choice;
+    int Algorithm;
+    for (int k = 0; k < 9; k++) {
+        fprintf(ofp, "\nDo you want to let whom play this bout P1\n");
+        fprintf(ofp, "1. Player\n");
+        fprintf(ofp, "2. AI\n");
+        fprintf(ofp, "Please Select Play Mode：");
+        scanf("%d", &choice);
+        fprintf(ofp, "\n");
 
-		while (choice < 1 || choice > 2) {
-			fprintf(ofp, "Please select available play mode!\n");
-			fprintf(ofp, "Please Select Player：");
-			scanf("%d", &choice);
-			fprintf(ofp, "\n");
-		}
-		if(choice==1){
-			player(1,0,2,k+1);
-		}
-		else if(choice==2){
-			player(1,2,0,k+1);
-		}
-		
-		fprintf(ofp, "\nDo you want to let whom play this bout P2\n");
-		fprintf(ofp, "1. Player\n");
-		fprintf(ofp, "2. AI\n");
-		fprintf(ofp, "Please Select Player：");
-		scanf("%d", &choice);
-		fprintf(ofp, "\n");
+        while (choice < 1 || choice > 2) {
+            fprintf(ofp, "Please select available play mode!\n");
+            fprintf(ofp, "Please Select Player：");
+            scanf("%d", &choice);
+            fprintf(ofp, "\n");
+        }
+        if (choice == 1) {
+            player(1, 0, 2, k + 1);
+        } else if (choice == 2) {
+            player(1, 2, 0, k + 1);
+        }
 
-		while (choice < 1 || choice > 2) {
-			fprintf(ofp, "Please select available play mode!\n");
-			fprintf(ofp, "Please Select Play Mode：");
-			scanf("%d", &choice);
-			fprintf(ofp, "\n");
-		}
-		if(choice==1){
-			if (ofp == stdout){
-				system("clear");
-			}
-			player(0,0,2,k+1);
-		}
-		else if(choice==2){
-			if (ofp == stdout){
-				system("clear");
-			}
-			player(0,2,0,k+1);
-		}
-	}
+        fprintf(ofp, "\nDo you want to let whom play this bout P2\n");
+        fprintf(ofp, "1. Player\n");
+        fprintf(ofp, "2. AI\n");
+        fprintf(ofp, "Please Select Player：");
+        scanf("%d", &choice);
+        fprintf(ofp, "\n");
 
+        while (choice < 1 || choice > 2) {
+            fprintf(ofp, "Please select available play mode!\n");
+            fprintf(ofp, "Please Select Play Mode：");
+            scanf("%d", &choice);
+            fprintf(ofp, "\n");
+        }
+        if (choice == 1) {
+            if (ofp == stdout) {
+                system("clear");
+            }
+            player(0, 0, 2, k + 1);
+        } else if (choice == 2) {
+            if (ofp == stdout) {
+                system("clear");
+            }
+            player(0, 2, 0, k + 1);
+        }
+    }
 
-//-----------------------------Cal_Result-----------------------------
+    //-----------------------------Cal_Result-----------------------------
 
-int p1num = 0;
+    int p1num = 0;
     int p2num = 0;
     //new begin
     for (int aaa = 0; aaa < 48; aaa++) {
@@ -313,32 +310,32 @@ int p1num = 0;
     fprintf(ofp, "territory of p1: %d\n", number_of_p1);
     fprintf(ofp, "territory of p2: %d\n", number_of_p2);
     if (number_of_p1 > number_of_p2) {
-    	FILE *fp;
-	    fp = fopen("history.txt","a");
-	    for(int i=0;i<35;i++){
-			fprintf(fp,"%d " ,file_Array1[i]);
-		}
-		fprintf(fp,"%d\n" ,file_Array1[35]);
+        FILE* fp;
+        fp = fopen("history.txt", "a");
+        for (int i = 0; i < 35; i++) {
+            fprintf(fp, "%d ", file_Array1[i]);
+        }
+        fprintf(fp, "%d\n", file_Array1[35]);
 
-		for(int i=0;i<35;i++){
-			fprintf(fp,"%d " ,file_Array2[i]);
-		}
-		fprintf(fp,"%d\n" ,file_Array2[35]);
-	    fclose(fp);
+        for (int i = 0; i < 35; i++) {
+            fprintf(fp, "%d ", file_Array2[i]);
+        }
+        fprintf(fp, "%d\n", file_Array2[35]);
+        fclose(fp);
         fprintf(ofp, "P1 win\n");
     } else if (number_of_p1 < number_of_p2) {
-    	FILE *fp;
-	    fp = fopen("history.txt","a");
-	    for(int i=0;i<35;i++){
-			fprintf(fp,"%d " ,file_Array2[i]);
-		}
-		fprintf(fp,"%d\n" ,file_Array2[35]);
+        FILE* fp;
+        fp = fopen("history.txt", "a");
+        for (int i = 0; i < 35; i++) {
+            fprintf(fp, "%d ", file_Array2[i]);
+        }
+        fprintf(fp, "%d\n", file_Array2[35]);
 
-		for(int i=0;i<35;i++){
-			fprintf(fp,"%d " ,file_Array1[i]);
-		}
-		fprintf(fp,"%d\n" ,file_Array1[35]);
-	    fclose(fp);
+        for (int i = 0; i < 35; i++) {
+            fprintf(fp, "%d ", file_Array1[i]);
+        }
+        fprintf(fp, "%d\n", file_Array1[35]);
+        fclose(fp);
         fprintf(ofp, "P2 win\n");
     } else {
         fprintf(ofp, "DRAW");
