@@ -15,8 +15,8 @@ int S_Simulate(int whichplayer, int whichbout)
 		S_y_of_block = 1;
 		player_return=S_player(1,1);
 		if(player_return==55){
-			printf("	sim error\n");
-			scanf("%d", &aaaa);
+			//printf("	sim error\n");
+			//scanf("%d", &aaaa);
 			return 3;
 		}
 		
@@ -24,8 +24,8 @@ int S_Simulate(int whichplayer, int whichbout)
 		S_y_of_block = 1;
 		player_return=S_player(2,0);
 		if(player_return==55){
-			printf("	sim error\n");
-			scanf("%d", &aaaa);
+			//printf("	sim error\n");
+			//scanf("%d", &aaaa);
 			return 3;
 		}
 		
@@ -35,8 +35,8 @@ int S_Simulate(int whichplayer, int whichbout)
 			S_y_of_block = 1;
 			player_return=S_player(1,0);
 			if(player_return==55){
-				printf("	sim error\n");
-				scanf("%d", &aaaa);
+				//printf("	sim error\n");
+				//scanf("%d", &aaaa);
 				return 3;
 			}
 			
@@ -44,8 +44,8 @@ int S_Simulate(int whichplayer, int whichbout)
 			S_y_of_block = 1;
 			player_return=S_player(2,0);
 			if(player_return==55){
-				printf("	sim error\n");
-				scanf("%d", &aaaa);
+				//printf("	sim error\n");
+				//scanf("%d", &aaaa);
 				return 3;
 			}
 			
@@ -58,8 +58,8 @@ int S_Simulate(int whichplayer, int whichbout)
 		S_y_of_block = 1;
 		player_return=S_player(2,1);
 		if(player_return==55){
-			printf("	sim error\n");
-			scanf("%d", &aaaa);
+			//printf("	sim error\n");
+			//scanf("%d", &aaaa);
 			return 3;
 		}
 		
@@ -69,8 +69,8 @@ int S_Simulate(int whichplayer, int whichbout)
 			S_y_of_block = 1;
 			player_return=S_player(1,0);
 			if(player_return==55){
-				printf("	sim error\n");
-				scanf("%d", &aaaa);
+				//printf("	sim error\n");
+				//scanf("%d", &aaaa);
 				return 3;
 			}
 			
@@ -78,8 +78,8 @@ int S_Simulate(int whichplayer, int whichbout)
 			S_y_of_block = 1;
 			player_return=S_player(2,0);
 			if(player_return==55){
-				printf("	sim error\n");
-				scanf("%d", &aaaa);
+				//printf("	sim error\n");
+				//scanf("%d", &aaaa);
 				return 3;
 			}
 			

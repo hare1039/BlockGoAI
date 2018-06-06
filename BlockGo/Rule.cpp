@@ -1158,7 +1158,7 @@ void player(int player, int AI, int H, int bout)
 				int before_bout = (player==1)?2:1;
 				if(player==1&&bout==1){
 					printf("first\n");
-					scanf("%d", &aaaa);
+					//scanf("%d", &aaaa);
 					struct block_node *start=(struct block_node*)malloc(sizeof(struct block_node));
 					start->bout=(player==1)?bout-1:bout;
 					start->which_player = (player==1)?2:1;
@@ -1172,7 +1172,7 @@ void player(int player, int AI, int H, int bout)
 				}
 				else if(reg_node->bout==before_player && reg_node->which_player==before_bout){
 					printf("reuse\n");
-					scanf("%d", &aaaa);
+					//scanf("%d", &aaaa);
 					reg_node=MCTS(reg_node); 
 					PC_1 = reg_node->block_number;
 					PC_2[0] = reg_node->x;
@@ -1182,7 +1182,7 @@ void player(int player, int AI, int H, int bout)
 				else{
 					//free(reg_node);
 					printf("other\n");
-					scanf("%d", &aaaa);
+					//scanf("%d", &aaaa);
 					struct block_node *start1=(struct block_node*)malloc(sizeof(struct block_node));
 					start1->bout=(player==1)?bout-1:bout;
 					start1->which_player = (player==1)?2:1;

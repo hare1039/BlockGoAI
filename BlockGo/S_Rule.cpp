@@ -148,11 +148,11 @@ int S_player(int S_player, int S_iffirst)
 			PC_2[0] = (rand() % 13 + 1);
 			PC_2[1] = (rand() % 13 + 1);
 			PC_3 = (rand() % 4 + 1);*/
-			printf("		%d\n",error_count);
+			//printf("		%d\n",error_count);
 			error_count++;
 			if(error_count>30000){
-				printf("		dont find piont\n");
-				scanf("%d", &aaaa);
+				//printf("		dont find piont\n");
+				//scanf("%d", &aaaa);
 				return 55;
 			}
 			

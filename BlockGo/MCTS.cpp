@@ -167,8 +167,8 @@ struct block_node* MCTS(struct block_node *root) {
 	int t=before_num;
 	int com=0;
 
-	while(t<(200000+before_num)){
-		printf("t = %d\n",t);
+	while(t<(100000+before_num)){
+		//printf("t = %d\n",t);
 		//scanf("%d", &aaaa);
 		//----------------------------Selection----------------------------//
 		S_source_assign();
@@ -389,9 +389,9 @@ struct block_node* MCTS(struct block_node *root) {
 			
 			whichplay=(leaf->which_player==1)?2:1;
 			which_bout=(leaf->which_player==1)?(leaf->bout):(leaf->bout+1);
-			printf("sim start\n");
+			//printf("sim start\n");
 			ifwin=S_Simulate(whichplay, which_bout);
-			printf("sim end\n");
+			//printf("sim end\n");
 			//----------------------------Expansion----------------------------//
 			struct block_node *newchild=new_node(S_expansion_block[0], S_expansion_block[3], S_expansion_block[1], S_expansion_block[2], whichplay, which_bout);
 			addChild(leaf,newchild);

@@ -127,6 +127,9 @@ int main(int argc, char *argv[])
 	    ofp = fopen ("/dev/null", "w");
 	}
 
+ 	block_node n;
+	reg_node = &n;
+
 //-----------------------------Intro_MapDisplay-----------------------------
 	initialize_block();
 	initialize_map();
