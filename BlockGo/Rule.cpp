@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 void Computing_Heuristic(int* perimeter, int* closeness)
 {
@@ -160,6 +161,18 @@ void transfer()
     }
 }
 
+void print_error(std::string s)
+{
+    if (not webmode)
+        std::printf("%s", s.c_str());
+    else {
+        // web mode
+        s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+        std::fprintf(stderr, "error: %s\n", s.c_str());
+        std::fflush(stderr);
+    }
+}
+
 void player(int player, int AI, int H, int bout)
 {
     for (int i = 0; i < 4; i++) {
@@ -221,7 +234,7 @@ void player(int player, int AI, int H, int bout)
                 }
                 printf_temporary_map();
                 if (Out_Range) {
-                    fprintf(ofp, "\nThe Area is out of Range!\n");
+                    print_error("\nThe Area is out of Range!\n");
                 }
             } else if (order == 's') {
                 x_of_block += 1;
@@ -240,7 +253,7 @@ void player(int player, int AI, int H, int bout)
                 }
                 printf_temporary_map();
                 if (Out_Range) {
-                    fprintf(ofp, "\nThe Area is out of Range!\n");
+                    print_error("\nThe Area is out of Range!\n");
                 }
             } else if (order == 'a') {
                 y_of_block -= 1;
@@ -259,7 +272,7 @@ void player(int player, int AI, int H, int bout)
                 }
                 printf_temporary_map();
                 if (Out_Range) {
-                    fprintf(ofp, "\nThe Area is out of Range!\n");
+                    print_error("\nThe Area is out of Range!\n");
                 }
             } else if (order == 'd') {
                 y_of_block += 1;
@@ -278,7 +291,7 @@ void player(int player, int AI, int H, int bout)
                 }
                 printf_temporary_map();
                 if (Out_Range) {
-                    fprintf(ofp, "\nThe Area is out of Range!\n");
+                    print_error("\nThe Area is out of Range!\n");
                 }
             } else if (order == '1') {
                 if ((player == 1 && !p1_used_block[0]) || (player == 0 && !p2_used_block[0])) {
@@ -291,7 +304,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -306,7 +319,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -321,7 +334,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -336,7 +349,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -351,7 +364,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -366,7 +379,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -381,7 +394,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -396,7 +409,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -411,7 +424,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                 } else {
                     printf_temporary_map();
-                    fprintf(ofp, "\nThe Block has been used!\n");
+                    print_error("\nThe Block has been used!\n");
                 }
             }
 
@@ -479,7 +492,7 @@ void player(int player, int AI, int H, int bout)
                 }
                 printf_temporary_map();
                 if (Out_Range) {
-                    fprintf(ofp, "\nThe Area is out of Range!\n");
+                    print_error("\nThe Area is out of Range!\n");
                 }
             }
 
@@ -527,7 +540,7 @@ void player(int player, int AI, int H, int bout)
 
                         if (overlapped) {
                             printf_temporary_map();
-                            fprintf(ofp, "\nPlease Select other places for the chosen block! The Area is overlapped!\n");
+                            print_error("\nPlease Select other places for the chosen block! The Area is overlapped!\n");
                         }
 
                         else {
@@ -590,7 +603,7 @@ void player(int player, int AI, int H, int bout)
                         }
                     } else {
                         printf_temporary_map();
-                        fprintf(ofp, "\nPlease Select other places for the chosen block! The Selection is invalid!\n");
+                        print_error("\nPlease Select other places for the chosen block! The Selection is invalid!\n");
                     }
 
                 }
@@ -599,7 +612,7 @@ void player(int player, int AI, int H, int bout)
                     printf_temporary_map();
                     x_of_block = 1;
                     y_of_block = 1;
-                    fprintf(ofp, "\nPlease Select one kind of Block(Input 1~9!!)\n");
+                    print_error("\nPlease Select one kind of Block(Input 1~9!!)\n");
                 }
 
             }
@@ -617,10 +630,10 @@ void player(int player, int AI, int H, int bout)
                         printf_temporary_map();
                         x_of_block = 1;
                         y_of_block = 1;
-                        fprintf(ofp, "\nPlease Select one kind of Block(Input 1~9!!)\n");
+                        print_error("\nPlease Select one kind of Block(Input 1~9!!)\n");
                     }
                 } else {
-                    fprintf(ofp, "\nPlease Input Correct Instruction!\n");
+                    print_error("\nPlease Input Correct Instruction!\n");
                 }
             }
 
@@ -1088,13 +1101,13 @@ void player(int player, int AI, int H, int bout)
                 break;
             }
 
-            // in web mode
-            if (ofp != stdout) {
+            if (webmode) {
                 //   PC_1    -- block no.
                 //   PC_2[0] -- x
                 //   PC_2[1] -- y
                 //   PC_3    -- rotate
-                std::printf("{\"stone\": %d, \"x\": %d, \"y\": %d, \"rotate\": %d}\n", PC_1, PC_2[0], PC_2[1], PC_3);
+                std::fprintf(stderr, "{\"stone\": %d, \"x\": %d, \"y\": %d, \"rotate\": %d}\n", PC_1, PC_2[1], PC_2[0], PC_3);
+                std::fflush(stderr);
             }
 
             printf_temporary_map();

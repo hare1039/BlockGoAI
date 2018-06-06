@@ -62,7 +62,7 @@ int block_count1 = 0;
 int block_count2 = 0;
 int block_change1 = 0;
 
-FILE* ofp = stdout;
+bool webmode = false;
 
 struct allblock S_blocklife1[30];
 struct allblock S_blocklife2[30];
@@ -124,7 +124,7 @@ struct block_node* reg_node;
 int main(int argc, char* argv[])
 {
     if (argc >= 2 && std::string(argv[1]) == "web") {
-        ofp = fopen("/dev/null", "w");
+        webmode = true;
     }
 
     block_node n;
@@ -139,18 +139,18 @@ int main(int argc, char* argv[])
     int choice;
     int Algorithm;
     for (int k = 0; k < 9; k++) {
-        fprintf(ofp, "\nDo you want to let whom play this bout P1\n");
-        fprintf(ofp, "1. Player\n");
-        fprintf(ofp, "2. AI\n");
-        fprintf(ofp, "Please Select Play Mode：");
+        printf("\nDo you want to let whom play this bout P1\n");
+        printf("1. Player\n");
+        printf("2. AI\n");
+        printf("Please Select Play Mode：");
         scanf("%d", &choice);
-        fprintf(ofp, "\n");
+        printf("\n");
 
         while (choice < 1 || choice > 2) {
-            fprintf(ofp, "Please select available play mode!\n");
-            fprintf(ofp, "Please Select Player：");
+            printf("Please select available play mode!\n");
+            printf("Please Select Player：");
             scanf("%d", &choice);
-            fprintf(ofp, "\n");
+            printf("\n");
         }
         if (choice == 1) {
             player(1, 0, 2, k + 1);
@@ -158,26 +158,26 @@ int main(int argc, char* argv[])
             player(1, 2, 0, k + 1);
         }
 
-        fprintf(ofp, "\nDo you want to let whom play this bout P2\n");
-        fprintf(ofp, "1. Player\n");
-        fprintf(ofp, "2. AI\n");
-        fprintf(ofp, "Please Select Player：");
+        printf("\nDo you want to let whom play this bout P2\n");
+        printf("1. Player\n");
+        printf("2. AI\n");
+        printf("Please Select Player：");
         scanf("%d", &choice);
-        fprintf(ofp, "\n");
+        printf("\n");
 
         while (choice < 1 || choice > 2) {
-            fprintf(ofp, "Please select available play mode!\n");
-            fprintf(ofp, "Please Select Play Mode：");
+            printf("Please select available play mode!\n");
+            printf("Please Select Play Mode：");
             scanf("%d", &choice);
-            fprintf(ofp, "\n");
+            printf("\n");
         }
         if (choice == 1) {
-            if (ofp == stdout) {
+            if (not webmode) {
                 system("clear");
             }
             player(0, 0, 2, k + 1);
         } else if (choice == 2) {
-            if (ofp == stdout) {
+            if (not webmode) {
                 system("clear");
             }
             player(0, 2, 0, k + 1);
@@ -265,12 +265,12 @@ int main(int argc, char* argv[])
             Map[blocklife2[aaa].x][blocklife2[aaa].y] = '+';
         }
     }
-    fprintf(ofp, " ");
+    printf(" ");
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
-            fprintf(ofp, " %c ", Map[i][j]);
+            printf(" %c ", Map[i][j]);
         }
-        fprintf(ofp, " \n ");
+        printf(" \n ");
     }
     //new end
     for (int i = 0; i < 15; i++) {
@@ -286,12 +286,12 @@ int main(int argc, char* argv[])
             }
         }
     }
-    fprintf(ofp, " ");
+    printf(" ");
     for (int i = 0; i < 15; i++) {
         for (int j = 0; j < 15; j++) {
-            fprintf(ofp, " %d ", final_map[i][j]);
+            printf(" %d ", final_map[i][j]);
         }
-        fprintf(ofp, " \n ");
+        printf(" \n ");
     }
 
     for (int i = 1; i < 14; i++) {
@@ -307,8 +307,8 @@ int main(int argc, char* argv[])
         }
     }
 
-    fprintf(ofp, "territory of p1: %d\n", number_of_p1);
-    fprintf(ofp, "territory of p2: %d\n", number_of_p2);
+    printf("territory of p1: %d\n", number_of_p1);
+    printf("territory of p2: %d\n", number_of_p2);
     if (number_of_p1 > number_of_p2) {
         FILE* fp;
         fp = fopen("history.txt", "a");
@@ -322,7 +322,7 @@ int main(int argc, char* argv[])
         }
         fprintf(fp, "%d\n", file_Array2[35]);
         fclose(fp);
-        fprintf(ofp, "P1 win\n");
+        printf("P1 win\n");
     } else if (number_of_p1 < number_of_p2) {
         FILE* fp;
         fp = fopen("history.txt", "a");
@@ -336,9 +336,9 @@ int main(int argc, char* argv[])
         }
         fprintf(fp, "%d\n", file_Array1[35]);
         fclose(fp);
-        fprintf(ofp, "P2 win\n");
+        printf("P2 win\n");
     } else {
-        fprintf(ofp, "DRAW");
+        printf("DRAW");
     }
 
     return 0;

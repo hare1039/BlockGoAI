@@ -60,7 +60,7 @@ extern int file_Array2[36];
 extern int block_count1;
 extern int block_count2;
 extern int block_change1;
-extern FILE * ofp;
+extern bool webmode;
 
 /*------------------Intro_MapDisplay------------------*/
 void introduction();
