@@ -15,8 +15,8 @@ allblock blocklife2[30];
 char temporary_map[15][15];
 char Map[15][15];
 bool block[4][4];
-int x_of_block;
-int y_of_block;
+int x_of_block = 1;
+int y_of_block = 1;
 
 bool block1[4][4] = { { true, false, false, false }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
 bool block2[4][4] = { { true, false, false, false }, { false, false, false, false }, { false, false, false, false }, { false, false, false, false } };
@@ -143,15 +143,26 @@ int main(int argc, char* argv[])
         printf("1. Player\n");
         printf("2. AI\n");
         printf("Please Select Play Mode：");
-        scanf("%d", &choice);
+        // scanf("%d", &choice);
+        {
+            char c = std::fgetc(stdin);
+            choice = c - '0';
+        }
         printf("\n");
 
         while (choice < 1 || choice > 2) {
             printf("Please select available play mode!\n");
             printf("Please Select Player：");
-            scanf("%d", &choice);
+            //            scanf("%d", &choice);
+            char c = std::fgetc(stdin);
+            choice = c - '0';
             printf("\n");
         }
+
+        // reset map (x, y) to (1, 1)
+        x_of_block = 1;
+        y_of_block = 1;
+
         if (choice == 1) {
             player(1, 0, 2, k + 1);
         } else if (choice == 2) {
@@ -162,15 +173,26 @@ int main(int argc, char* argv[])
         printf("1. Player\n");
         printf("2. AI\n");
         printf("Please Select Player：");
-        scanf("%d", &choice);
+        // scanf("%d", &choice);
+        {
+            char c = std::fgetc(stdin);
+            choice = c - '0';
+        }
         printf("\n");
 
         while (choice < 1 || choice > 2) {
             printf("Please select available play mode!\n");
             printf("Please Select Play Mode：");
-            scanf("%d", &choice);
+            // scanf("%d", &choice);
+            char c = std::fgetc(stdin);
+            choice = c - '0';
             printf("\n");
         }
+
+        // reset map (x, y) to (1, 1)
+        x_of_block = 1;
+        y_of_block = 1;
+
         if (choice == 1) {
             if (not webmode) {
                 system("clear");
@@ -309,6 +331,8 @@ int main(int argc, char* argv[])
 
     printf("territory of p1: %d\n", number_of_p1);
     printf("territory of p2: %d\n", number_of_p2);
+
+    int winner = 0;
     if (number_of_p1 > number_of_p2) {
         FILE* fp;
         fp = fopen("history.txt", "a");
@@ -323,6 +347,7 @@ int main(int argc, char* argv[])
         fprintf(fp, "%d\n", file_Array2[35]);
         fclose(fp);
         printf("P1 win\n");
+        winner = 1;
     } else if (number_of_p1 < number_of_p2) {
         FILE* fp;
         fp = fopen("history.txt", "a");
@@ -337,8 +362,14 @@ int main(int argc, char* argv[])
         fprintf(fp, "%d\n", file_Array1[35]);
         fclose(fp);
         printf("P2 win\n");
+        winner = 2;
     } else {
         printf("DRAW");
+        winner = 0;
+    }
+
+    if (webmode) {
+        std::fprintf(stderr, "{\"winner\": {\"player\": %d, \"result\": {\"p1\": %d, \"p2\": %d}}}\n", winner, number_of_p1, number_of_p2);
     }
 
     return 0;

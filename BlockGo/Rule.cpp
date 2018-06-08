@@ -1,4 +1,5 @@
 #include "General.h"
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
@@ -1433,14 +1434,15 @@ void player(int player, int AI, int H, int bout)
                 break;
             }
 
-            /*// in web mode
-            if (ofp != stdout) {
-	            //   PC_1    -- block no.
-	            //   PC_2[0] -- x
-	            //   PC_2[1] -- y
-	            //   PC_3    -- rotate
-	            std::printf("{\"stone\": %d, \"x\": %d, \"y\": %d, \"rotate\": %d}\n", PC_1, PC_2[0], PC_2[1], PC_3);
-           }*/
+            // in web mode
+            if (webmode) {
+                //   PC_1    -- block no.
+                //   PC_2[0] -- x
+                //   PC_2[1] -- y
+                //   PC_3    -- rotate
+                std::fprintf(stderr, "{\"stone\": %d, \"x\": %d, \"y\": %d, \"rotate\": %d}\n", PC_1, PC_2[1], PC_2[0], PC_3);
+                std::fflush(stderr);
+            }
 
             printf_temporary_map();
             for (int i = 1; i < 14; i++) {
