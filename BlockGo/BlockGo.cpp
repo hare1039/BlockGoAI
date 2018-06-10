@@ -331,6 +331,12 @@ int main(int argc, char* argv[])
 
     printf("territory of p1: %d\n", number_of_p1);
     printf("territory of p2: %d\n", number_of_p2);
+    if (webmode) {
+        std::fprintf(stderr,
+            "{\"winner\": {\"player\": %d, \"result\": {\"p1\": %d, \"p2\": %d}}}\n",
+            (number_of_p1 > number_of_p2) ? 1 : 2, number_of_p1, number_of_p2);
+        std::fflush(stderr);
+    }
 
     int winner = 0;
     if (number_of_p1 > number_of_p2) {
@@ -366,10 +372,6 @@ int main(int argc, char* argv[])
     } else {
         printf("DRAW");
         winner = 0;
-    }
-
-    if (webmode) {
-        std::fprintf(stderr, "{\"winner\": {\"player\": %d, \"result\": {\"p1\": %d, \"p2\": %d}}}\n", winner, number_of_p1, number_of_p2);
     }
 
     return 0;
