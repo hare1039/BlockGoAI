@@ -67,6 +67,12 @@ bool webmode = false;
 struct allblock S_blocklife1[30];
 struct allblock S_blocklife2[30];
 
+int connected_map[15][15];
+bool Connected_p1 = false;
+bool Connected_p2 = false;
+int Domain_Boun_p1 = 0;
+int Domain_Boun_p2 = 0;
+
 char S_temporary_map[15][15];
 char S_Map[15][15];
 bool S_block[4][4];
@@ -119,6 +125,12 @@ int S_block_change1;
 
 int S_expansion_block[4];
 
+int S_connected_map[15][15];
+bool S_Connected_p1 = false;
+bool S_Connected_p2 = false;
+int S_Domain_Boun_p1 = 0;
+int S_Domain_Boun_p2 = 0;
+
 struct block_node* reg_node;
 
 int main(int argc, char* argv[])
@@ -141,7 +153,7 @@ int main(int argc, char* argv[])
     for (int k = 0; k < 9; k++) {
         printf("\nDo you want to let whom play this bout P1\n");
         printf("1. Player\n");
-        printf("2. AI\n");
+        printf("2. Heuristic AI\n");
         printf("Please Select Play Mode：");
         // scanf("%d", &choice);
         {
@@ -164,14 +176,14 @@ int main(int argc, char* argv[])
         y_of_block = 1;
 
         if (choice == 1) {
-            player(1, 0, 2, k + 1);
+            player(1, 0, k + 1);
         } else if (choice == 2) {
-            player(1, 2, 0, k + 1);
+            player(1, 1, k + 1);
         }
 
         printf("\nDo you want to let whom play this bout P2\n");
         printf("1. Player\n");
-        printf("2. AI\n");
+        printf("2. Heuristic AI\n");
         printf("Please Select Player：");
         // scanf("%d", &choice);
         {
@@ -197,12 +209,12 @@ int main(int argc, char* argv[])
             if (not webmode) {
                 system("clear");
             }
-            player(0, 0, 2, k + 1);
+            player(0, 0, k + 1);
         } else if (choice == 2) {
             if (not webmode) {
                 system("clear");
             }
-            player(0, 2, 0, k + 1);
+            player(0, 1, k + 1);
         }
     }
 

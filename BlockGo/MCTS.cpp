@@ -79,6 +79,17 @@ void S_source_assign()
     S_block_count1 = block_count1;
     S_block_count2 = block_count2;
     S_block_change1 = block_change1;
+
+    for (int i = 1; i < 14; i++) {
+        for (int j = 1; j < 14; j++) {
+            S_connected_map[i][j] = connected_map[i][j];
+        }
+    }
+    S_Connected_p1 = Connected_p1;
+    S_Connected_p2 = Connected_p2;
+    S_Domain_Boun_p1 = Domain_Boun_p1;
+    S_Domain_Boun_p2 = Domain_Boun_p2;
+
     return;
 }
 
@@ -171,8 +182,8 @@ struct block_node* MCTS(struct block_node* root)
     int t = before_num;
     int com = 0;
 
-    while (t < (100000 + before_num)) {
-        //printf("t = %d\n",t);
+    while (t < (2000 + before_num)) {
+        printf("t = %d\n",t);
         //scanf("%d", &aaaa);
         //----------------------------Selection----------------------------//
         S_source_assign();
@@ -180,7 +191,7 @@ struct block_node* MCTS(struct block_node* root)
         struct block_node* leaf;
         leaf = root;
         while (select == 0) {
-            if (leaf->child_number < 25) {
+            if (leaf->child_number < 10) {
                 select++;
             } else {
                 leaf = UCT(leaf, t);
@@ -382,7 +393,7 @@ struct block_node* MCTS(struct block_node* root)
             whichplay = (leaf->which_player == 1) ? 2 : 1;
             which_bout = (leaf->which_player == 1) ? (leaf->bout) : (leaf->bout + 1);
             //printf("sim start\n");
-            ifwin = S_Simulate(whichplay, which_bout);
+            ifwin = S_Simulate(whichplay, which_bout, leaf->child_number);
             //printf("sim end\n");
             //----------------------------Expansion----------------------------//
             struct block_node* newchild = new_node(S_expansion_block[0], S_expansion_block[3], S_expansion_block[1], S_expansion_block[2], whichplay, which_bout);
@@ -392,7 +403,7 @@ struct block_node* MCTS(struct block_node* root)
         } else {
             whichplay = 1;
             which_bout = 10;
-            ifwin = S_Simulate(whichplay, which_bout);
+            ifwin = S_Simulate(whichplay, which_bout, leaf->child_number);
         }
 
         //-------------------------Backpropagation-------------------------//

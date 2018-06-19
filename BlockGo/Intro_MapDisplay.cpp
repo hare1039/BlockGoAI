@@ -47,6 +47,7 @@ void initialize_map()
     for (int i = 1; i < 14; i++) {
         for (int j = 1; j < 14; j++) {
             Map[i][j] = '+';
+            connected_map[i][j] = 0;
         }
     }
     for (int ii = 0; ii < 15; ii++) {

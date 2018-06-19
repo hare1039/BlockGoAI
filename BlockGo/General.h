@@ -62,6 +62,12 @@ extern int block_count2;
 extern int block_change1;
 extern bool webmode;
 
+extern int connected_map[15][15];
+extern bool Connected_p1;
+extern bool Connected_p2;
+extern int Domain_Boun_p1;
+extern int Domain_Boun_p2;
+
 /*------------------Intro_MapDisplay------------------*/
 void introduction();
 void initialize_block();
@@ -72,7 +78,7 @@ void printf_temporary_map();
 
 /*------------------------Rule------------------------*/
 void transfer();
-void player(int player, int choice, int H, int bout);
+void player(int player, int choice, int bout);
 int Computing_perimeter();
 /*------------------------Rule------------------------*/
 
@@ -90,12 +96,12 @@ void decide_whose_number();
 
 /*------------------------MCTS------------------------*/
 struct block_node{
-    
+
     struct block_node *parent;
     struct block_node *child;
     struct block_node *leftsibling;
     struct block_node *rightsibling;
-    
+
     int block_number;
     int c;
 	int x;
@@ -173,13 +179,19 @@ extern int S_block_change1;
 
 extern int S_expansion_block[4];
 
+extern int S_connected_map[15][15];
+extern bool S_Connected_p1;
+extern bool S_Connected_p2;
+extern int S_Domain_Boun_p1;
+extern int S_Domain_Boun_p2;
+
 void S_source_assign();
-int S_Simulate(int whichplayer, int whichbout);
+int S_Simulate(int whichplayer, int whichbout, int child_number);
 
 void S_printf_temporary_map();
 
 void S_transfer();
-int S_player(int S_player, int iffirst);
+int S_player(int S_player, int iffirst, int step, int child_number);
 
 void S_search_block1(int x, int y);
 void S_search_block2(int x, int y);

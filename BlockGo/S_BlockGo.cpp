@@ -5,15 +5,18 @@
 #include "General.h"
 #include <string>
 
-int S_Simulate(int whichplayer, int whichbout)
+int S_Simulate(int whichplayer, int whichbout, int child_number)
 {
     //-----------------------------Rule-----------------------------
+
     int player_return = 0;
+    int step = 0;
+    step = whichbout - 1;
     if (whichplayer == 1 && whichbout < 10) {
         //printf("Simulate_player1\n");
         S_x_of_block = 1;
         S_y_of_block = 1;
-        player_return = S_player(1, 1);
+        player_return = S_player(1, 1, step, child_number);
         if (player_return == 55) {
             //printf("	sim error\n");
             //scanf("%d", &aaaa);
@@ -22,7 +25,7 @@ int S_Simulate(int whichplayer, int whichbout)
 
         S_x_of_block = 1;
         S_y_of_block = 1;
-        player_return = S_player(2, 0);
+        player_return = S_player(2, 0, step, child_number);
         if (player_return == 55) {
             //printf("	sim error\n");
             //scanf("%d", &aaaa);
@@ -33,7 +36,7 @@ int S_Simulate(int whichplayer, int whichbout)
 
             S_x_of_block = 1;
             S_y_of_block = 1;
-            player_return = S_player(1, 0);
+            player_return = S_player(1, 0, step, child_number);
             if (player_return == 55) {
                 //printf("	sim error\n");
                 //scanf("%d", &aaaa);
@@ -42,7 +45,7 @@ int S_Simulate(int whichplayer, int whichbout)
 
             S_x_of_block = 1;
             S_y_of_block = 1;
-            player_return = S_player(2, 0);
+            player_return = S_player(2, 0, step, child_number);
             if (player_return == 55) {
                 //printf("	sim error\n");
                 //scanf("%d", &aaaa);
@@ -54,7 +57,7 @@ int S_Simulate(int whichplayer, int whichbout)
         //printf("Simulate_player2\n");
         S_x_of_block = 1;
         S_y_of_block = 1;
-        player_return = S_player(2, 1);
+        player_return = S_player(2, 1, step, child_number);
         if (player_return == 55) {
             //printf("	sim error\n");
             //scanf("%d", &aaaa);
@@ -65,7 +68,7 @@ int S_Simulate(int whichplayer, int whichbout)
 
             S_x_of_block = 1;
             S_y_of_block = 1;
-            player_return = S_player(1, 0);
+            player_return = S_player(1, 0, step, child_number);
             if (player_return == 55) {
                 //printf("	sim error\n");
                 //scanf("%d", &aaaa);
@@ -74,7 +77,7 @@ int S_Simulate(int whichplayer, int whichbout)
 
             S_x_of_block = 1;
             S_y_of_block = 1;
-            player_return = S_player(2, 0);
+            player_return = S_player(2, 0, step, child_number);
             if (player_return == 55) {
                 //printf("	sim error\n");
                 //scanf("%d", &aaaa);
