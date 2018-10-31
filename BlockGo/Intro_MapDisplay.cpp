@@ -1,15 +1,14 @@
+#include "General.h"
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include "General.h"
-
 
 void introduction()
 {
     printf(" welcome to game that called 'block out' \n");
     printf(" following show how to control this game \n");
-    printf("\n w : up \n");
     printf("\n s : down \n");
+    printf("\n w : up \n");
     printf("\n a : left \n");
     printf("\n d : right \n");
     printf("\n 1 : 口 \n");
@@ -34,7 +33,7 @@ void introduction()
     return;
 }
 
-void reduction_block()
+void initialize_block()
 {
     for (int iii = 0; iii < 4; iii++) {
         for (int jjj = 0; jjj < 4; jjj++) {
@@ -43,11 +42,12 @@ void reduction_block()
     }
 }
 
-void reduction_map()
+void initialize_map()
 {
     for (int i = 1; i < 14; i++) {
         for (int j = 1; j < 14; j++) {
             Map[i][j] = '+';
+            connected_map[i][j] = 0;
         }
     }
     for (int ii = 0; ii < 15; ii++) {
@@ -66,8 +66,8 @@ void reduction_map()
 void printf_temporary_map()
 {
 
-    system("clear");
-
+    //system("clear");
+    printf("\n\n\n");
     if (player1 == true) {
         printf("\n               Player1:O               \n\n");
     } else {
